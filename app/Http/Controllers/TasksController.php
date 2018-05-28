@@ -54,10 +54,12 @@ class TasksController extends Controller
     {
         
          $this->validate($request, [
-            'content' => 'required|max:191',
+             'title' => 'required|max:191',
+             'content' => 'required|max:191',
         ]);
         
         $tasklist = new Tasklist;
+        $message->title = $request->title; 
         $tasklist->content = $request->content;
         $tasklist->save();
 
@@ -110,10 +112,12 @@ class TasksController extends Controller
         //
         
         $this->validate($request, [
+            'title' => 'required|max:191', 
             'content' => 'required|max:191',
         ]);
         
         $tasklist = Tasklist::find($id);
+        $message->title = $request->title; 
         $tasklist->content = $request->content;
         $tasklist->save();
 
