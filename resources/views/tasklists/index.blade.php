@@ -8,13 +8,26 @@
  <h1>タスク一覧</h1>
 
     @if (count($tasklists) > 0)
-        <ul>
+    　<table class="table table-striped">
+    　   <thead>
+    　   <tr>
+    　       <th>id</th>
+                    <th>ステータス</th>
+                    <th>タスク</th>
+                </tr>
+            </thead>
+          </tbody>
             @foreach ($tasklists as $tasklist)
-                 <li>{!! link_to_route('tasklists.show', $tasklist->id, ['id' => $tasklist->id]) !!} : {{ $tasklist->content }}</li>
+                 <tr>
+                        <td>{!! link_to_route('tasklists.show', $tasklist->id, ['id' => $tasklist->id]) !!}</td>
+                        <td>{{ $tasklist->status }}</td>
+                        <td>{{ $tasklist->content }}</td>
+                    </tr>
             @endforeach
-        </ul>
+        </tbody>
+      </table>
     @endif
     
-    {!! link_to_route('tasklists.create', '新規タスクの投稿') !!}
+    {!! link_to_route('tasklists.create', '新規タスクの投稿',null, ['class' => 'btn btn-primary']) !!}
    
 @endsection
